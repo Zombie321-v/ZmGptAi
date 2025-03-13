@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI GPT Response</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(45deg, #000428, #004e92);
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+         .logo-container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    padding: 20px;
+}
+
+.logo {
+    width: 100px; /* Adjust size */
+    height: 100px;
+    border-radius: 50%; /* Make it circular */
+    box-shadow: 0 0 15px 5px rgba(0, 191, 255, 0.8); /* Light blue neon effect */
+    animation: neonGlow 1.5s infinite alternate; /* Neon animation */
+}
+
+@keyframes neonGlow {
+    0% {
+        box-shadow: 0 0 15px 5px rgba(0, 191, 255, 0.8);
+    }
+    100% {
+        box-shadow: 0 0 25px 10px rgba(0, 191, 255, 1);
+    }
+}
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: cyan;
+            text-shadow: 0px 0px 15px cyan, 0px 0px 25px blue;
+        }
+
+        input {
+            width: 80%;
+            padding: 12px;
+            font-size: 18px;
+            margin-top: 15px;
+            border: none;
+            outline: none;
+            background: #222;
+            color: cyan;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            box-shadow: 0px 0px 10px cyan;
+        }
+
+        button {
+            background: linear-gradient(45deg, cyan, blue);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: 0.4s;
+            box-shadow: 0px 0px 15px cyan;
+        }
+
+        button:hover {
+            background: linear-gradient(45deg, blue, cyan);
+            box-shadow: 0px 0px 20px cyan, 0px 0px 30px blue;
+            transform: scale(1.1);
+        }
+
+        .response-container {
+            margin-top: 25px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: left;
+            white-space: pre-wrap;
+            border: 2px solid cyan;
+            position: relative;
+            box-shadow: 0px 0px 15px cyan, 0px 0px 30px blue;
+            font-size: 16px;
+            line-height: 1.6;
+            max-width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .code-box {
+            background: rgba(0, 255, 255, 0.2);
+            color: cyan;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 14px;
+            margin: 15px 0;
+            position: relative;
+            box-shadow: 0px 0px 10px cyan;
+            overflow-x: auto;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: rgba(0, 255, 255, 0.3);
+            border: 1px solid cyan;
+            color: cyan;
+            padding: 6px 12px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .copy-btn:hover {
+            background: cyan;
+            color: black;
+            transform: scale(1.1);
+        }
+
+        .response-container h2 {
+            font-size: 22px;
+            font-weight: 900;
+            color: #00eaff;
+            text-shadow: 0px 0px 10px #00eaff;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            border-bottom: 2px solid cyan;
+            padding-bottom: 5px;
+        }
+        .whatsapp-container {
+            position: fixed;
+            bottom: 20px; /* Distance from bottom */
+            right: 20px; /* Distance from right */
+            z-index: 1000; /* Keeps it on top */
+        }
+
+        .whatsapp-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background-color: #25D366; /* WhatsApp green */
+            border-radius: 50%;
+            box-shadow: 0 0 15px rgba(37, 211, 102, 0.8);
+            animation: glowEffect 1.5s infinite alternate;
+        }
+
+        .whatsapp-button img {
+            width: 35px;
+            height: 35px;
+        }
+
+        @keyframes glowEffect {
+           0% { box-shadow: 0 0 15px rgba(37, 211, 102, 0.8); }
+           100% { box-shadow: 0 0 25px rgba(37, 211, 102, 1); }
+        }
+
+        .whatsapp-button:hover {
+            transform: scale(1.1);
+       }
+.input-container {
+    position: relative;
+    display: inline-block;
+}
+
+#userInput {
+    padding-right: 40px; /* Cross icon ke liye space */
+}
+
+.clear-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 18px;
+    color: #00aaff; /* Light Blue Color */
+    text-shadow: 0 0 5px #00aaff, 0 0 10px #00aaff, 0 0 15px #00aaff; /* Neon Glow Effect */
+    display: none; /* Pehle hidden rahega */
+    transition: transform 0.2s ease, text-shadow 0.2s ease;
+    background: transparent; /* Background remove kar diya */
+    border: none; /* Koi border nahi */
+}
+
+.clear-icon:hover {
+    transform: scale(1.2); /* Hover par thoda zoom */
+    text-shadow: 0 0 10px #00aaff, 0 0 20px #00aaff, 0 0 30px #00aaff; /* Extra glow */
+}
+
+
+
+
+       
+
+    </style>
+</head>
+<body>
+        <div class="logo-container">
+    <img src="Zmpic.png" alt="ZM Logo" class="logo">
+</div>
+    <h1>GPT AI Response</h1>
+
+<div class="input-container">
+    <input type="text" id="userInput" placeholder="Ask anything...">
+    <span class="clear-icon" onclick="clearInput()">❌</span>
+</div>
+<button onclick="playSound(); getResponse()">Generate Response</button>
+<audio id="clickSound" src="click.mp3"></audio>
+
+
+
+    <div class="response-container" id="responseBox">
+        <div id="responseText"></div>
+    </div>
+    <div class="whatsapp-container">
+    <a href="javascript:void(0);" onclick="openWhatsApp()" class="whatsapp-button">
+        <img src="whatsapp.png" alt="WhatsApp">
+    </a>
+</div>
+<script>
+    function getResponse() {
+        let userInput = document.getElementById("userInput").value;
+        let responseBox = document.getElementById("responseBox");
+        let responseText = document.getElementById("responseText");
+
+        if (userInput.trim() === "") {
+            responseText.innerHTML = "<h2>❌ Error</h2><p>Please enter a question!</p>";
+            responseBox.style.color = "red";
+            return;
+        }
+
+        responseText.innerHTML = "<h2>⌛ Thinking...</h2>";
+        responseBox.style.color = "yellow";
+
+        let apiUrl = `proxy.php?text=${encodeURIComponent(userInput)}`;
+
+        fetch(apiUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP Error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data && data.response) {
+                    let formattedResponse = formatResponse(data.response);
+
+                    // ✅ New: Check for ".owner" keyword
+                    if (userInput.toLowerCase().includes(".owner")) {
+                        formattedResponse = "<h2>👑 Owner Info</h2><p>⚡ Powered by <strong>MOHSIN SOHAIL 💡</strong> <br> 🛡️ The Future <strong> Cyber Legend </strong> </p>";
+                    }
+
+                    responseText.innerHTML = formattedResponse;
+                    responseBox.style.color = "white";
+                } else {
+                    responseText.innerHTML = "<h2>❌ API Error!</h2><p>Invalid response format.</p>";
+                    responseBox.style.color = "red";
+                }
+            })
+            .catch(error => {
+                responseText.innerHTML = `<h2>❌ Error!</h2><p>${error.message}</p>`;
+                responseBox.style.color = "red";
+            });
+    }
+
+function formatResponse(text) {
+    return text
+        .replace(/\n/g, "<br>")
+        .replace(/```html(.*?)```/gs, '<h2>📝 HTML CODE</h2><div class="code-box"><button class="copy-btn" onclick="copyText(this)">Copy Code</button><pre><code>$1</code></pre></div>')
+        .replace(/```css(.*?)```/gs, '<h2>🎨 CSS CODE</h2><div class="code-box"><button class="copy-btn" onclick="copyText(this)">Copy Code</button><pre><code>$1</code></pre></div>')
+        .replace(/```javascript(.*?)```/gs, '<h2>⚡ JAVASCRIPT CODE</h2><div class="code-box"><button class="copy-btn" onclick="copyText(this)">Copy Code</button><pre><code>$1</code></pre></div>')
+        .replace(/```php(.*?)```/gs, '<h2>🐘 PHP CODE</h2><div class="code-box"><button class="copy-btn" onclick="copyText(this)">Copy Code</button><pre><code>$1</code></pre></div>')
+        .replace(/```python(.*?)```/gs, '<h2>🐍 PYTHON CODE</h2><div class="code-box"><button class="copy-btn" onclick="copyText(this)">Copy Code</button><pre><code>$1</code></pre></div>')
+        .replace(/```java(.*?)```/gs, '<h2>☕ JAVA CODE</h2><div class="code-box"><button class="copy-btn" onclick="copyText(this)">Copy Code</button><pre><code>$1</code></pre></div>')
+        .replace(/```c\+\+(.*?)```/gs, '<h2>🚀 C++ CODE</h2><div class="code-box"><button class="copy-btn" onclick="copyText(this)">Copy Code</button><pre><code>$1</code></pre></div>')
+        .replace(/```c(.*?)```/gs, '<h2>🔵 C CODE</h2><div class="code-box"><button class="copy-btn" onclick="copyText(this)">Copy Code</button><pre><code>$1</code></pre></div>')
+        .replace(/```sql(.*?)```/gs, '<h2>🛢️ SQL QUERY</h2><div class="code-box"><button class="copy-btn" onclick="copyText(this)">Copy Code</button><pre><code>$1</code></pre></div>')
+        .replace(/## (.*?)<br>/g, "<h2>$1</h2>");
+}
+
+    function copyText(button) {
+        let codeElement = button.parentElement.querySelector("code");
+        let text = codeElement.innerText;
+
+        let tempTextarea = document.createElement("textarea");
+        tempTextarea.value = text;
+        document.body.appendChild(tempTextarea);
+        tempTextarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(tempTextarea);
+
+        alert("✅ Code Copied!");
+    }
+
+    function openWhatsApp() {
+        var phoneNumber = "923214287620"; // WhatsApp Number
+        var message = "Hyy...I want to get some information about your GPT🔥🚀."; // Message
+        var url = "https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(message);
+        window.open(url, "_blank"); // Open in new tab
+    }
+
+    function clearInput() {
+        document.getElementById("userInput").value = "";
+    }
+
+    function toggleDarkMode() {
+        document.body.classList.toggle("dark-mode");
+    }
+    function playSound() {
+        let audio = new Audio('click.mp3');
+         audio.play();
+    }
+let userInput = document.getElementById("userInput");
+let clearIcon = document.querySelector(".clear-icon");
+
+userInput.addEventListener("input", function () {
+    clearIcon.style.display = this.value ? "inline" : "none"; // Jab text ho tab show karo
+});
+
+function clearInput() {
+    userInput.value = ""; // Input field ko clear kar do
+    clearIcon.style.display = "none"; // Cross ko hide kar do
+}
+
+</script>
+
+   
+
+</body>
+</html>
